@@ -1,3 +1,10 @@
+general:
+  branches:
+    only:
+      - master
+  artifacts:
+    - "app/build/outputs/apk/app-release-unsigned.apk"
+
 machine:
   java:
     version: openjdk7
@@ -10,3 +17,9 @@ dependencies:
 test:
   override:
     - echo "Nothing to do here"
+
+deployment:
+  master:
+    branch: master
+    commands:
+      - ./gradlew assembleRelease
